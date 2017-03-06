@@ -1,0 +1,8 @@
+*.jpg   binary
+*.png   binary
+*.gif   binary
+*.eps	binary
+
+*.pdf	binary
+
+*.tex linguist-language=TeX

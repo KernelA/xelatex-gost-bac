@@ -1,0 +1,41 @@
+% Для настройки toc, lof, lot
+% Оглавление расчитано на 3 уровня.
+\usepackage{tocloft}
+
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+
+\cftsetindents{paragraph}{0pt}{0pt}
+\cftsetindents{subparagraph}{0pt}{10em}
+\setlength{\cftbeforesecskip}{0.5em}
+
+% Раскомментировать, если нужны одинаковый отсупы.
+%\setlength{\cftbeforesubsecskip}{\cftbeforesecskip}
+%\setlength{\cftbeforesubsubsecskip}{\cftbeforesecskip}
+%\setlength{\cftbeforeparaskip}{\cftbeforesecskip}
+%\setlength{\cftbeforesubparaskip}{\cftbeforesecskip}
+
+% Альтернативный способ для вставки 'Стр.' в оглавление.
+%\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-2.5em}}}
+\renewcommand{\cftdotsep}{1}
+
+% Настройка стиля для заголовка оглавления.
+\renewcommand{\cfttoctitlefont}{\hfill\bfseries\normalsize}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+% Добавление ... между section и номером страницы.
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% Стили для: section, subsection, subsubsection, paragraph в оглавлении.
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftparafont}{\normalfont}
+\renewcommand{\cftsubparafont}{\normalfont}
+
+% Стиль для номера страницы напротив section.
+\renewcommand{\cftsecpagefont}{\normalfont}
+
+

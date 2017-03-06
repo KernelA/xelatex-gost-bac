@@ -1,0 +1,197 @@
+\documentclass[14pt, a4paper, oneside, final]{extarticle}
+
+% Основные настройки.
+\input{MainPreambleXelaTex}
+
+% Счётчики для автонумерации рисунков и таблиц.
+\input{AutoCountPreambleXeLaTex}
+
+% Подписи для рисунков и таблиц.
+\input{CapPreambleXeLaTex}
+
+% Настройка колонтитулов для страниц.
+\input{HeadersPagePreambleXeLaTex}
+
+% Стили для заголовков в тексте.
+\input{HeadersStylePreambleXeLaTex}
+
+% Настройка toc, lot, lof.
+\input{ToaPreambleXeLaTex}
+
+% Дополнительные пакеты, которые необязательны для шаблона.
+% Сюда можно включать свои дополнительные пакеты.
+\input{OptionalPreambleXeLatex}
+
+
+% Отсупы страницы.
+\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+% Размер красной строки.
+\setlength{\parindent}{1cm}
+
+
+% Добавление слово Стр. в оглавление. Не очень хороший способ.
+%\addtocontents{toc}{~\hfill\normalfont{Стр.}\par}
+
+% 1.5 отсуп между строками.
+% Можно поменять на другие значения.
+\usepackage{setspace}
+\onehalfspacing
+
+
+% Начальный номер первой страницы.
+\setcounter{page}{2}
+
+
+%\usepackage[final]{pdfpages}
+
+% Команды, которые используются как текст для обозначения количества рисунков и таблиц.
+% Если таблиц или рисунков нет (соответсвующие счётчики равны 0), то используется команда \no*.
+\newcommand{\figures}{\total{totfigures}~рисунков}
+\newcommand{\nofigures}{рисунков нет}
+
+\newcommand{\tables}{\total{tottables}~таблиц}
+\newcommand{\notables}{таблиц нет}
+
+\newcommand{\appendices}{\total{totappendix}~приложений}
+\newcommand{\noappendices}{приложений нет}
+
+\newcommand{\refrences}{\total{totreferences}~источников}
+\newcommand{\norefrences}{источников нет}
+
+
+
+% Пакет для гиперссылок в документе.
+% Для избежания различных проблем с корректностью гиперссылок в оглавлении этот пакет следует подключать последним.
+\usepackage{hyperref}
+
+\hypersetup{				
+   unicode=true,            % русские буквы в раздела PDF
+   colorlinks=false,       	% false: ссылки в рамках; true: цветные ссылки
+   linktoc=all,				% ссылки на названиях и носерах страниц в toc
+   bookmarksdepth=5,		% глубина закладок в pdf файле
+   pdftitle={Заголовок},    % Заголовок
+   pdfauthor={Автор},       % Автор
+   pdfsubject={Тема},       % Тема
+   pdfcreator={Создатель},  % Создатель
+   pdfproducer={Производитель}, % Производитель
+   pdfkeywords={keyword1} {key2} {key3} % Ключевые слова
+   % linkcolor=blue,        % внутренние ссылки
+   % citecolor=black,       % на библиографию
+   % filecolor=magenta,     % на файлы
+   % urlcolor=cyan          % на URL
+} 
+
+% Изменения уровня paragraph и subparagrpah в закладках pdf документа.
+% Эти команды должны включаться после пакета hyperref.
+\makeatletter
+\renewcommand{\toclevel@paragraph}{1}
+\renewcommand{\toclevel@subparagraph}{1}
+\makeatother
+
+
+
+\begin{document}
+
+
+\begin{gostabstract}{РЕФЕРАТ}
+Выпускная квалификационная работа содержит \pageref*{LastPage}~страниц, \printtotfig, \printtottab, \printtotapp, \printtotref .
+\end{gostabstract}
+
+
+\gosttableofcontents
+
+
+\begin{lofab}{ОБОЗНАЧЕНИЯ И СОКРАЩЕНИЯ}
+ОДУ - обыкновенные дифференциальные уравнения;\\
+\end{lofab}
+
+
+\begin{gostheader}{ВВЕДЕНИЕ}
+\end{gostheader}
+
+
+\mainpart
+
+
+\begin{gostsection}{Первый раздел}
+Здесь какой - то текст. Квадратное уравнение.
+\begin{equation}
+f(x) = x^2 + x-2.
+\end{equation}
+График представлен на рисунке ниже.
+% Важно добавлять каждый рисунок в окружение gostfigure, чтобы был правильный подсчёт общего числа рисунков.
+\begin{gostfigure}
+\begin{center} 
+\begin{tikzpicture}
+\begin{axis}[domain=-3:3, width = 0.8 \textwidth, grid = both, ylabel style={rotate=-90}, xlabel = \(x\), ylabel = \(f(x)\)]
+\addplot[mark=none, thick]{x*x + x - 2};
+\end{axis}
+\end{tikzpicture}
+\captionof{figure}{График \(f(x)\).}
+\end{center}
+\end{gostfigure}
+
+Можно вставлять таблицы.
+% Аналогично с таблицами.
+\begin{gosttable}
+\begin{center} 
+\captionof{table}{Корни квадратного уравнения}
+\begin{tabular}{|c|c|}
+\hline 
+Первый корень &  Второй корень \\ 
+\hline 
+1 & -2  \\ 
+\hline 
+\end{tabular} 
+\end{center}
+\end{gosttable}
+
+
+\subsection{Первый подраздел}
+
+\subsubsection{Ещё один уровень}
+
+\end{gostsection}
+
+
+
+\begin{gostheader}{ЗАКЛЮЧЕНИЕ}
+Интересная статья по нейронным сетям \cite{Cybenko}.
+\end{gostheader}
+
+
+%\bibliographystyle{ugost2008s}
+%\bibliography{bibliography}
+
+% Список литературы.
+\begin{gostbibliography}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}{11}
+\bibitem{Bard} Бард Й. Нелинейное оценивание параметров / Й. Бард, Москва: Статистика, 1979. 349 c.
+\bibitem{Volterra} Вольтерра В. Математическая теория борьбы за существование // Усп. физ. наук. 1928. № 1 (8). C. 13–34.
+\bibitem{Cybenko} Cybenko G. Approximation by Superpositions of a Sigmoidal Function // Mathematics of Control, Signals, and Systems. 1989. (2). C. 303–314.
+\end{gostbibliography}
+
+
+
+\begin{gostappendix}{Программный код}
+\lstset{language=[11]c++,basicstyle=\ttfamily, showstringspaces=false}
+
+\begin{lstlisting}
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+  auto b = 1;
+  auto a = 2;
+  cout << "2 + 1 = " << a + b << endl;
+  return 0;
+}
+\end{lstlisting}
+
+\end{gostappendix}
+
+
+
+\end{document}

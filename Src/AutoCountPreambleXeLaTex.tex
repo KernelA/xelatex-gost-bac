@@ -1,0 +1,42 @@
+\usepackage{totcount}
+
+% Счётчики для рисунков и таблиц, приложений, источников.
+\newtotcounter{totfigures}
+\newtotcounter{tottables}
+\newtotcounter{totappendix}
+\newtotcounter{totreferences}
+
+% Подсчёт количества ссылок на источники.
+\pretocmd{\bibitem}{\stepcounter{totreferences}}{}{}
+
+% Напечаатать текст с числом рисунков в работе.
+\newcommand\printtotfig{%
+  \ifnum\totvalue{totfigures}=0
+    \nofigures%
+  \else 
+    \figures%
+\fi}
+
+% Напечаатать текст с числом таблиц в работе.
+\newcommand\printtottab{%
+  \ifnum\totvalue{tottables}=0
+    \notables%
+  \else 
+    \tables%
+\fi}
+
+% Напечаатать текст с числом приложений в работе.
+\newcommand\printtotapp{%
+  \ifnum\totvalue{totappendix}=0
+    \noappendices%
+  \else 
+    \appendices%
+\fi}
+
+% Напечаатать текст с числом источников в работе.
+\newcommand\printtotref{%
+  \ifnum\totvalue{totreferences}=0
+    \norefrences%
+  \else 
+    \refrences%
+\fi}
