@@ -12,10 +12,11 @@
 % Установка шрифтов
 \setromanfont[Mapping=tex-text]{Times New Roman}
 \setmonofont[Mapping=tex-text]{Courier New}
+\setsansfont[Mapping=tex-text]{Arial}
 
-% Для избежаниия ошибки о том, что не определён шрифт для кириллических симовлов.
+% Для избежаниия ошибки о том, что не определён шрифт для кириллических символов.
 \newfontfamily\cyrillicfonttt{Courier New}[Script=Cyrillic]
-%\newfontfamily\cyrillicfontsf{Times New Roman}[Script=Cyrillic]
+\newfontfamily\cyrillicfontsf{Arial}[Script=Cyrillic]
 
 % Русские буквы в формулах.
 \usepackage{mathtext} 				
@@ -65,6 +66,17 @@
 % Первая строка начинается с отсупа.
 \usepackage{indentfirst}
 
+% Заголовки.
+% \header используется для заголовков, которые добавляются в toc.
+% \header* не добавляет содержимое в toc.
+\NewDocumentCommand\header{s m}{% s = star, m = mandatory arg
+   \IfBooleanTF{#1}{%
+      \paragraph*{#2}%
+   }{%
+      \paragraph{#2}%
+   }%
+}
+
 % Окружение для реферата.
 \newenvironment{gostabstract}[1]{\newpage\header*{#1}}{\newpage}
 
@@ -103,13 +115,4 @@
 \newpage%
 }
 
-% Заголовки.
-% \header используется для заголовков, которые добавляются в toc.
-% \header* не добавляет содержимое в toc.
-\NewDocumentCommand\header{s m}{% s = star, m = mandatory arg
-   \IfBooleanTF{#1}{%
-      \paragraph*{#2}%
-   }{%
-      \paragraph{#2}%
-   }%
-}
+

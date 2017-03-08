@@ -1,7 +1,7 @@
 \documentclass[14pt, a4paper, oneside, final]{extarticle}
 
 % Основные настройки.
-\input{MainPreambleXelaTex}
+\input{MainPreambleXeLaTex}
 
 % Счётчики для автонумерации рисунков и таблиц.
 \input{AutoCountPreambleXeLaTex}
@@ -23,7 +23,7 @@
 \input{OptionalPreambleXeLatex}
 
 
-% Отсупы страницы.
+% Отступы страницы.
 \usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
 % Размер красной строки.
@@ -47,16 +47,16 @@
 
 % Команды, которые используются как текст для обозначения количества рисунков и таблиц.
 % Если таблиц или рисунков нет (соответсвующие счётчики равны 0), то используется команда \no*.
-\newcommand{\figures}{\total{totfigures}~рисунков}
+\newcommand{\figures}{\total{totfigures}~рисунок}
 \newcommand{\nofigures}{рисунков нет}
 
-\newcommand{\tables}{\total{tottables}~таблиц}
+\newcommand{\tables}{\total{tottables}~таблица}
 \newcommand{\notables}{таблиц нет}
 
-\newcommand{\appendices}{\total{totappendix}~приложений}
+\newcommand{\appendices}{\total{totappendix}~приложение}
 \newcommand{\noappendices}{приложений нет}
 
-\newcommand{\refrences}{\total{totreferences}~источников}
+\newcommand{\refrences}{\total{totreferences}~источника}
 \newcommand{\norefrences}{источников нет}
 
 
@@ -68,7 +68,7 @@
 \hypersetup{				
    unicode=true,            % русские буквы в раздела PDF
    colorlinks=false,       	% false: ссылки в рамках; true: цветные ссылки
-   linktoc=all,				% ссылки на названиях и носерах страниц в toc
+   linktoc=all,				% ссылки на названиях и номерах страниц в toc
    bookmarksdepth=5,		% глубина закладок в pdf файле
    pdftitle={Заголовок},    % Заголовок
    pdfauthor={Автор},       % Автор
@@ -103,7 +103,9 @@
 
 
 \begin{lofab}{ОБОЗНАЧЕНИЯ И СОКРАЩЕНИЯ}
-ОДУ - обыкновенные дифференциальные уравнения;\\
+ОДУ - обыкновенные дифференциальные уравнения.
+
+СЛАУ - система линейных алгебраических уравнений.
 \end{lofab}
 
 
@@ -115,7 +117,7 @@
 
 
 \begin{gostsection}{Первый раздел}
-Здесь какой - то текст. Квадратное уравнение.
+Здесь какой - то текст. Квадратное уравнение. \textsf{Работа}
 \begin{equation}
 f(x) = x^2 + x-2.
 \end{equation}
