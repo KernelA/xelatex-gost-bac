@@ -18,9 +18,6 @@
 \newfontfamily\cyrillicfonttt{Courier New}[Script=Cyrillic]
 \newfontfamily\cyrillicfontsf{Arial}[Script=Cyrillic]
 
-% Русские буквы в формулах.
-\usepackage{mathtext} 				
-
 \frenchspacing
 
 % Стандартнызх символов, которые приняты в России. Для них сущетсвует аналогичные команды, но их сложнее запомнить.
@@ -43,25 +40,8 @@
 % Определение функции sign.
 \DeclareMathOperator{\sgn}{\mathop{sgn}}
 
-% Теоремы.
-\theoremstyle{plain} % Это стиль по умолчанию, его можно не переопределять.
-\newtheorem{theorem}{Теорема}[section]
-\newtheorem{proposition}[theorem]{Утверждение}
-
-% "Определение".
-\theoremstyle{definition} 
-\newtheorem{corollary}{Следствие}[theorem]
-\newtheorem{problem}{Задача}[section]
- 
-% "Примечание".
-\theoremstyle{remark} 
-\newtheorem*{nonum}{Решение}
-
 % Узнать, сколько всего страниц в документе.
 \usepackage{lastpage} 
-
-% Слияние строк в таблице.
-\usepackage{multirow} 
 
 % Первая строка начинается с отсупа.
 \usepackage{indentfirst}
@@ -103,7 +83,8 @@
 \newenvironment{gostappendix}[1]{\newpage\stepcounter{totappendix}\subparagraph{#1}}{\newpage}
 
 % Окружение для библиографии.
-\newenvironment{gostbibliography}[2]{\newpage\titlespacing*{\paragraph}{0pt}{*4}{-3ex}\header{#1}\renewcommand{\refname}{}\begin{thebibliography}{#2}}{\end{thebibliography}\newpage}
+\newenvironment{gostbibliography}[2]{\newpage\begingroup\renewcommand{\contentsname}{#1}\renewcommand{\section}[2]{\header{\contentsname}}\begin{thebibliography}{#2}}{\end{thebibliography}\endgroup\newpage}
+
 
 % Переопределение команды, чтобы номера списка литературы были формата '9.', а не '[9]'.
 \makeatletter

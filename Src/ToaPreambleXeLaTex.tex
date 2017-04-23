@@ -8,14 +8,16 @@
 
 
 \cftsetindents{paragraph}{0pt}{0pt}
-\cftsetindents{subparagraph}{0pt}{10em}
-\setlength{\cftbeforesecskip}{0.5em}
+\cftsetindents{subparagraph}{0pt}{0pt}
+\setlength{\cftbeforesecskip}{0.25em}
+
+\setlength{\cftsubparanumwidth}{20ex}
 
 % Раскомментировать, если нужны одинаковый отсупы.
-%\setlength{\cftbeforesubsecskip}{\cftbeforesecskip}
-%\setlength{\cftbeforesubsubsecskip}{\cftbeforesecskip}
-%\setlength{\cftbeforeparaskip}{\cftbeforesecskip}
-%\setlength{\cftbeforesubparaskip}{\cftbeforesecskip}
+\setlength{\cftbeforesubsecskip}{\cftbeforesecskip}
+\setlength{\cftbeforesubsubsecskip}{\cftbeforesecskip}
+\setlength{\cftbeforeparaskip}{\cftbeforesecskip}
+\setlength{\cftbeforesubparaskip}{\cftbeforesecskip}
 
 % Альтернативный способ для вставки 'Стр.' в оглавление.
 %\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-2.5em}}}
@@ -37,5 +39,3 @@
 
 % Стиль для номера страницы напротив section.
 \renewcommand{\cftsecpagefont}{\normalfont}
-
-
