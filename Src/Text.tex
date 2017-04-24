@@ -1,69 +1,8 @@
-\documentclass[14pt, a4paper, oneside, final]{extarticle}
-
-% Основные настройки.
-\input{MainPreambleXeLaTex}
-
-% Счётчики для автонумерации рисунков и таблиц.
-\input{AutoCountPreambleXeLaTex}
-
-% Подписи для рисунков и таблиц.
-\input{CapPreambleXeLaTex}
-
-% Настройка колонтитулов для страниц.
-\input{HeadersPagePreambleXeLaTex}
-
-% Стили для заголовков в тексте.
-\input{HeadersStylePreambleXeLaTex}
-
-% Настройка toc, lot, lof.
-\input{ToaPreambleXeLaTex}
-
-% Дополнительные пакеты, которые необязательны для шаблона.
-% Сюда можно включать свои дополнительные пакеты.
-\input{OptionalPreambleXeLatex}
-
-
-% Отступы страницы.
-\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-
-% Размер красной строки.
-\setlength{\parindent}{1cm}
-
-
-% Добавление слово Стр. в оглавление. Не очень хороший способ.
-%\addtocontents{toc}{~\hfill\normalfont{Стр.}\par}
-
-% 1.5 отсуп между строками.
-% Можно поменять на другие значения.
-\usepackage{setspace}
-\onehalfspacing
-
-
-% Начальный номер первой страницы.
-\setcounter{page}{2}
-
-
-%\usepackage[final]{pdfpages}
-
-% Команды, которые используются как текст для обозначения количества рисунков и таблиц.
-% Если таблиц или рисунков нет (соответсвующие счётчики равны 0), то используется команда \no*.
-\newcommand{\figures}{\total{totfigures}~рисунок}
-\newcommand{\nofigures}{рисунков нет}
-
-\newcommand{\tables}{\total{tottables}~таблица}
-\newcommand{\notables}{таблиц нет}
-
-\newcommand{\appendices}{\total{totappendix}~приложение}
-\newcommand{\noappendices}{приложений нет}
-
-\newcommand{\refrences}{\total{totreferences}~источника}
-\newcommand{\norefrences}{источников нет}
+\documentclass{bacgost}
 
 
 
-% Пакет для гиперссылок в документе.
-% Для избежания различных проблем с корректностью гиперссылок в оглавлении этот пакет следует подключать последним.
-\usepackage{hyperref}
+\input{Optional}
 
 \hypersetup{				
    unicode=true,            % русские буквы в раздела PDF
@@ -82,41 +21,32 @@
    % urlcolor=cyan          % на URL
 } 
 
-% Изменения уровня paragraph и subparagrpah в закладках pdf документа.
-% Эти команды должны включаться после пакета hyperref.
-\makeatletter
-\renewcommand{\toclevel@paragraph}{1}
-\renewcommand{\toclevel@subparagraph}{1}
-\makeatother
-
-
-
 \begin{document}
 
 
-\begin{gostabstract}{РЕФЕРАТ}
-Выпускная квалификационная работа содержит \pageref*{LastPage}~страниц, \printtotfig, \printtottab, \printtotapp, \printtotref .
-\end{gostabstract}
+\begin{abstract}
+Выпускная квалификационная работа содержит \pageref*{LastPage}~страниц, \total{totfigures}~рисунок, \total{tottables}~таблиц, \total{totappendix}~приложение, \total{totreferences}~источника.
+\end{abstract}
 
 
 \gosttableofcontents
 
 
-\begin{lofab}{ОБОЗНАЧЕНИЯ И СОКРАЩЕНИЯ}
+\begin{lofab}
 ОДУ - обыкновенные дифференциальные уравнения.
 
 СЛАУ - система линейных алгебраических уравнений.
 \end{lofab}
 
 
-\begin{gostheader}{ВВЕДЕНИЕ}
-\end{gostheader}
+\header{ВВЕДЕНИЕ}
+Текст введения.
 
 
 \mainpart
 
 
-\begin{gostsection}{Первый раздел}
+\section{Первый раздел}
 Здесь какой - то текст. Квадратное уравнение.
 \begin{equation}
 f(x) = x^2 + x-2.
@@ -134,7 +64,7 @@ f(x) = x^2 + x-2.
 \end{center}
 \end{gostfigure}
 
-Можно вставлять таблицы.
+Корни квадратного уравнения представлены в~таблице. вставлять таблицы.
 % Аналогично с таблицами.
 \begin{gosttable}
 \begin{center} 
@@ -149,30 +79,28 @@ f(x) = x^2 + x-2.
 \end{center}
 \end{gosttable}
 
-
 \subsection{Первый подраздел}
 
 \subsubsection{Ещё один уровень}
+\[
+\int x\,d\,x = \dfrac{x^2}{2} + C.
+\]
 
-\end{gostsection}
+\section{Второй раздел}
+\[
+\dfrac{d\,e^x}{d\,x} = e^x.
+\]
 
-
-
-\begin{gostheader}{ЗАКЛЮЧЕНИЕ}
+\header{ЗАКЛЮЧЕНИЕ}
 Интересная статья по нейронным сетям \cite{Cybenko}.
-\end{gostheader}
 
-
-%\bibliographystyle{ugost2008s}
-%\bibliography{bibliography}
 
 % Список литературы.
-\begin{gostbibliography}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}{11}
+\begin{gostbibliography}{11}
 \bibitem{Bard} Бард Й. Нелинейное оценивание параметров / Й. Бард, Москва: Статистика, 1979. 349 c.
 \bibitem{Volterra} Вольтерра В. Математическая теория борьбы за существование // Усп. физ. наук. 1928. № 1 (8). C. 13–34.
 \bibitem{Cybenko} Cybenko G. Approximation by Superpositions of a Sigmoidal Function // Mathematics of Control, Signals, and Systems. 1989. (2). C. 303–314.
 \end{gostbibliography}
-
 
 
 \begin{gostappendix}{Программный код}
@@ -193,7 +121,4 @@ int main()
 \end{lstlisting}
 
 \end{gostappendix}
-
-
-
 \end{document}
