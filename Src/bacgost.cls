@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bacgost}[2017/04/22 Version 0.0.1. XeLaTeX class for bachelor work.]
+\ProvidesClass{bacgost}[2017/04/29 Version 0.0.2. XeLaTeX class for bachelor work.]
 
 \LoadClass[14pt, a4paper, oneside, final]{extarticle}
 
@@ -130,12 +130,14 @@
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
 \renewcommand{\theparagraph}{}
-\renewcommand{\thesubparagraph}{ПРИЛОЖЕНИЕ \arabic{totappendix}.}
+\renewcommand{\thesubparagraph}{\arabic{totappendix}}
 
 % section, paragraph и subparagraph начинаались с новой строки.
 \newcommand{\sectionbreak}{\clearpage}
 \newcommand{\paragraphbreak}{\clearpage}
 \newcommand{\subparagraphbreak}{\clearpage}
+
+\newcommand{\appendixtitle}{Приложение }
 
 % Настройка форматирования section, subsection, subsubsetcion, paragraph.
 \titleformat{\section}
@@ -160,7 +162,7 @@
     
 \titleformat{\subparagraph}
     {\filleft\normalsize\bfseries}
-    {\thesubparagraph}
+    {\appendixtitle\thesubparagraph.}
     {1ex}{#1}
 
 
@@ -179,7 +181,10 @@
 \cftsetindents{paragraph}{0pt}{0pt}
 \cftsetindents{subparagraph}{0pt}{0pt}
 
-\setlength{\cftsubparanumwidth}{20ex}
+\renewcommand{\cftsubparapresnum}{\appendixtitle}
+\renewcommand{\cftsubparaaftersnum}{.}
+
+\setlength{\cftsubparanumwidth}{16ex}
 
 \setlength{\cftbeforesecskip}{0.25ex}
 
