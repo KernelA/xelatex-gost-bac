@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bacgost}[2017/04/29 Version 0.0.2. XeLaTeX class for bachelor work.]
+\ProvidesClass{bacgost}[2017/05/02 Version 0.0.3. XeLaTeX class for bachelor work.]
 
 \LoadClass[14pt, a4paper, oneside, final]{extarticle}
 
@@ -72,9 +72,6 @@
 \renewcommand{\ge}{\ensuremath{\geqslant}}
 \renewcommand{\geq}{\ensuremath{\geqslant}}
 \renewcommand{\emptyset}{\varnothing}
-
-% Определение функции sign.
-\DeclareMathOperator{\sgn}{\mathop{sgn}}
 
 %---------------------------------------------------------------------------------------
 % Счётчики для автонумерации рисунков и таблиц.
