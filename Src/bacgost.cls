@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bacgost}[2017/05/02 Version 0.0.3. XeLaTeX class for bachelor work.]
+\ProvidesClass{bacgost}[2017/05/28 Version 0.0.4. XeLaTeX class for bachelor work.]
 
 \LoadClass[14pt, a4paper, oneside, final]{extarticle}
 
@@ -176,7 +176,7 @@
 \setcounter{secnumdepth}{5}
 
 \cftsetindents{paragraph}{0pt}{0pt}
-\cftsetindents{subparagraph}{0pt}{0pt}
+\cftsetindents{subparagraph}{\cftsubsecindent}{0pt}
 
 \renewcommand{\cftsubparapresnum}{\appendixtitle}
 \renewcommand{\cftsubparaaftersnum}{.}
@@ -235,6 +235,10 @@
 
 \newcommand{\referencestitle}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
 
+\newcommand{\appendixestitle}{ПРИЛОЖЕНИЯ}
+
+\newcommand{\toctitle}{СОДЕРЖАНИЕ}
+
 % Окружение для реферата.
 \renewenvironment{abstract}{\header*{\abstracttitle}}{}
 
@@ -242,12 +246,12 @@
 \newenvironment{lofab}{\header{\lofabtitle}}{}
 
 % Команда для формирования содержания.
-\newcommand{\gosttableofcontents}{\newpage\tableofcontents\newpage}
+\newcommand{\gosttableofcontents}{\renewcommand{\contentsname}{\toctitle}\newpage\tableofcontents\newpage}
 
 % Окружения для вставки рисунков, таблиц, приложений.
 \newenvironment{gostfigure}{\stepcounter{totfigures}}{}
 \newenvironment{gosttable}{\stepcounter{tottables}}{}
-\newenvironment{gostappendix}[1]{\stepcounter{totappendix}\subparagraph{#1}}{}
+\newenvironment{gostappendix}[1]{\stepcounter{totappendix}\subparagraph{#1}}{\newpage}
 
 % Окружение для библиографии.
 \newenvironment{gostbibliography}[1]{\begingroup\renewcommand{\contentsname}{\referencestitle}\renewcommand{\section}[2]{\header{\contentsname}}\begin{thebibliography}{#1}}{\end{thebibliography}\endgroup\newpage}
@@ -256,6 +260,17 @@
 \makeatletter
 \renewcommand\@biblabel[1]{#1.}
 \makeatother
+
+% Команда для печати заголовка 'ПРИЛОЖЕНИЯ' (то что определяет команад \appendixestitle) на отдельной странице и с выравнианием по центру.
+\newcommand{\appendixes}{{\newpage\renewcommand{\paragraphbreak}{}\vspace*{\fill}%
+\begin{center}%
+\paragraph{\appendixestitle}%
+%\phantomsection\addcontentsline{toc}{paragraph}{ОСНОВНАЯ ЧАСТЬ}%
+\end{center}%
+\vspace{\fill}%
+\newpage%
+}
+}
 
 % Команда для печати заголовка 'ОСНОВНАЯ ЧАСТЬ' на отдельной странице и с выравнианием по центру.
 \newcommand{\mainpart}{{\newpage\renewcommand{\paragraphbreak}{}\vspace*{\fill}%
@@ -276,5 +291,5 @@
 % Эти команды должны включаться после пакета hyperref.
 \makeatletter
 \renewcommand{\toclevel@paragraph}{1}
-\renewcommand{\toclevel@subparagraph}{1}
+\renewcommand{\toclevel@subparagraph}{2}
 \makeatother

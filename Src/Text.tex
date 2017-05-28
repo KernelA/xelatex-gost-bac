@@ -4,6 +4,8 @@
 
 \input{Optional}
 
+\usepackage{float}
+
 \hypersetup{				
    unicode=true,            % русские буквы в раздела PDF
    colorlinks=false,       	% false: ссылки в рамках; true: цветные ссылки
@@ -21,11 +23,16 @@
    % urlcolor=cyan          % на URL
 } 
 
+
 \begin{document}
 
 
 \begin{abstract}
-Выпускная квалификационная работа содержит \pageref*{LastPage}~страниц, \total{totfigures}~рисунок, \total{tottables}~таблиц, \total{totappendix}~приложение, \total{totreferences}~источника.
+Выпускная квалификационная работа содержит \pageref*{LastPage}~страниц, \total{totfigures}~рисунок, \total{tottables}~таблиц, \total{totappendix}~приложение, \total{totreferences}~источника. В~некоторых случаях количество приложений не указывается.
+
+КЛЮЧЕВОЕ СЛОВО 1, КЛЮЧЕВОЕ СЛОВО 2, КЛЮЧЕВОЕ СЛОВО 3 и т. д.
+
+Краткое описание работы.
 \end{abstract}
 
 
@@ -102,6 +109,7 @@ f(x) = x^2 + x-2.
 \bibitem{Cybenko} Cybenko G. Approximation by Superpositions of a Sigmoidal Function // Mathematics of Control, Signals, and Systems. 1989. (2). C. 303–314.
 \end{gostbibliography}
 
+\appendixes
 
 \begin{gostappendix}{Программный код}
 \lstset{language=[11]c++,basicstyle=\ttfamily, showstringspaces=false}
@@ -119,6 +127,64 @@ int main()
   return 0;
 }
 \end{lstlisting}
-
 \end{gostappendix}
+
+
+\begin{gostappendix}{Таблица}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+67 & 67 & 7 & 4 \\ 
+\hline 
+47 & 87 & 71 & 13 \\ 
+\hline 
+984 & 12 & 354 & 7 \\ 
+\hline 
+748 & 89 & 2 & 31 \\ 
+\hline 
+124 & 78 & 99 & 993431 \\ 
+\hline 
+56 & 12 & 33 & 1554 \\ 
+\hline 
+48 & 58 & 78 & 12 \\ 
+\hline 
+102 & 1205 & 1112 & 35 \\ 
+\hline 
+97 & 888 & 436 & 64 \\ 
+\hline 
+1 & 2 & 4 & 7 \\ 
+984 & 12 & 354 & 7 \\ 
+\hline 
+748 & 89 & 2 & 31 \\ 
+\hline 
+124 & 78 & 99 & 993431 \\ 
+\hline 
+56 & 12 & 33 & 1554 \\ 
+\hline 
+48 & 58 & 78 & 12 \\ 
+\hline 
+102 & 1205 & 1112 & 35 \\ 
+\hline 
+97 & 888 & 436 & 64 \\ 
+\hline 
+1 & 2 & 4 & 7 \\ 
+748 & 89 & 2 & 31 \\ 
+\hline 
+124 & 78 & 99 & 993431 \\ 
+\hline 
+56 & 12 & 33 & 1554 \\ 
+\hline 
+48 & 58 & 78 & 12 \\ 
+\hline 
+102 & 1205 & 1112 & 35 \\ 
+\hline 
+97 & 888 & 436 & 64 \\ 
+\hline 
+1 & 2 & 4 & 7 \\ 
+\hline 
+\end{tabular} 
+\end{table}
+\end{gostappendix}
+
 \end{document}
