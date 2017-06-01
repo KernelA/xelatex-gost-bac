@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bacgost}[2017/05/28 Version 0.0.4. XeLaTeX class for bachelor work.]
+\ProvidesClass{bacgost}[2017/06/01 Version 0.0.5. XeLaTeX class for bachelor work.]
 
 \LoadClass[14pt, a4paper, oneside, final]{extarticle}
 
@@ -44,6 +44,9 @@
 % Стандартные пакеты AMS.
 \RequirePackage{amsmath,amsfonts,amssymb,amsthm, mathtools} 
 
+% Нумерация формул в пределах section. Команда из пакета amsmath.
+\numberwithin{equation}{section}
+
 \RequirePackage{etoolbox}
 
 % Узнать, сколько всего страниц в документе.
@@ -62,7 +65,7 @@
 % Размер красной строки.
 \setlength{\parindent}{1cm}
 
-% Стандартнызх символов, которые приняты в России. Для них сущетсвует аналогичные команды, но их сложнее запомнить.
+% Стандартные символы, которые приняты в России. Для них сущетсвует аналогичные команды, но их сложнее запомнить.
 % Это можно закомментировать, если удобнее писать эквивалентные команды.
 \renewcommand{\epsilon}{\ensuremath{\varepsilon}}
 \renewcommand{\phi}{\ensuremath{\varphi}}
@@ -90,8 +93,11 @@
 % Для настройки заголовков таблиц и рисунков.
 \RequirePackage[tableposition=top]{caption}
 
-% Настройка вида подписи: Рис. (номер) стоит точка.
-\captionsetup{labelsep=period, hypcap=false} 
+% Настройка вида подписи: Рис. (номер) стоит точка. Нумерация рисунков и таблиц в пределах section. 
+\captionsetup{labelsep=period, hypcap=false, figurewithin=section, tablewithin=section } 
+
+% Выравнивание подписей к таблицам справа.
+\captionsetup[table]{singlelinecheck=off, justification=raggedleft}
 
 %---------------------------------------------------------------------------------------
 % Настройка колонтитулов.
@@ -138,27 +144,27 @@
 
 % Настройка форматирования section, subsection, subsubsetcion, paragraph.
 \titleformat{\section}
-    {\filcenter\normalsize\bfseries}
+    {\filcenter\normalsize}
     {\thesection}
     {1ex}{#1}
 
 \titleformat{\subsection}
-    {\filcenter\normalsize\bfseries}
+    {\filcenter\normalsize}
     {\thesubsection}
     {1ex}{#1}
     
 \titleformat{\subsubsection}
-    {\filcenter\normalsize\bfseries}
+    {\filcenter\normalsize}
     {\thesubsubsection}
     {1ex}{#1}   
     
 \titleformat{\paragraph}
-    {\filcenter\normalsize\bfseries}
+    {\filcenter\normalsize}
     {}
     {1ex}{#1}
     
 \titleformat{\subparagraph}
-    {\filleft\normalsize\bfseries}
+    {\filleft\normalsize}
     {\appendixtitle\thesubparagraph.}
     {1ex}{#1}
 
@@ -196,7 +202,7 @@
 \renewcommand{\cftdotsep}{1}
 
 % Настройка стиля для заголовка оглавления.
-\renewcommand{\cfttoctitlefont}{\hfill\bfseries\normalsize}
+\renewcommand{\cfttoctitlefont}{\hfill\normalsize}
 \renewcommand{\cftaftertoctitle}{\hfill}
 
 % Добавление ... между section и номером страницы.
