@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bacgost}[2017/06/01 Version 0.0.5. XeLaTeX class for bachelor work.]
+\ProvidesClass{bacgost}[2017/06/05 Version 0.0.6. XeLaTeX class for bachelor work.]
 
 \LoadClass[14pt, a4paper, oneside, final]{extarticle}
 
@@ -56,7 +56,7 @@
 \RequirePackage{indentfirst}
 
 % Отступы страницы.
-\RequirePackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\RequirePackage[left=2.5cm, headsep=0.5 \headsep, right=2cm,top=2cm,bottom=2cm]{geometry}
 
 % Для уменьшения отступов в списках.
 \RequirePackage{enumitem}
@@ -121,11 +121,11 @@
 \RequirePackage[explicit]{titlesec}
 
 % Настройка вертикальных и горизонтальных отступов.
-\titlespacing*{\section}{0pt}{*1}{*2}
-\titlespacing*{\subsection}{0pt}{*1}{*2}
-\titlespacing*{\subsubsection}{0pt}{*1}{*2}
-\titlespacing*{\paragraph}{0pt}{*1}{*2}
-\titlespacing*{\subparagraph}{0pt}{*1}{*2}
+\titlespacing*{\section}{0pt}{0pt}{*2}
+\titlespacing*{\subsection}{0pt}{*2}{*2}
+\titlespacing*{\subsubsection}{0pt}{*2}{*2}
+\titlespacing*{\paragraph}{0pt}{0pt}{*2}
+\titlespacing*{\subparagraph}{0pt}{0pt}{*2}
 
 
 % Переопределение номеров раздаелов, поразделов и т. д.
@@ -140,7 +140,7 @@
 \newcommand{\paragraphbreak}{\clearpage}
 \newcommand{\subparagraphbreak}{\clearpage}
 
-\newcommand{\appendixtitle}{Приложение }
+\newcommand{\appendixtitle}{Приложение}
 
 % Настройка форматирования section, subsection, subsubsetcion, paragraph.
 \titleformat{\section}
@@ -165,7 +165,7 @@
     
 \titleformat{\subparagraph}
     {\filleft\normalsize}
-    {\appendixtitle\thesubparagraph.}
+    {\appendixtitle\ \thesubparagraph.}
     {1ex}{#1}
 
 
@@ -184,7 +184,7 @@
 \cftsetindents{paragraph}{0pt}{0pt}
 \cftsetindents{subparagraph}{\cftsubsecindent}{0pt}
 
-\renewcommand{\cftsubparapresnum}{\appendixtitle}
+\renewcommand{\cftsubparapresnum}{\appendixtitle\ }
 \renewcommand{\cftsubparaaftersnum}{.}
 
 \setlength{\cftsubparanumwidth}{16ex}
