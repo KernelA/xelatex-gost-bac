@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bacgost}[2017/06/01 Version 0.0.5. XeLaTeX class for bachelor work.]
+\ProvidesClass{bacgost}[2017/06/05 Version 0.0.6 a. XeLaTeX class for bachelor work.]
 
 \LoadClass[14pt, a4paper, oneside, final]{extarticle}
 
