@@ -56,7 +56,7 @@
 \RequirePackage{indentfirst}
 
 % Отступы страницы.
-\RequirePackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\RequirePackage[a4paper, headsep=0.5 \headsep, left=2.5cm,right=2.1cm,top=2cm,bottom=2.1cm]{geometry}
 
 % Для уменьшения отступов в списках.
 \RequirePackage{enumitem}
@@ -121,11 +121,11 @@
 \RequirePackage[explicit]{titlesec}
 
 % Настройка вертикальных и горизонтальных отступов.
-\titlespacing*{\section}{0pt}{*1}{*2}
-\titlespacing*{\subsection}{0pt}{*1}{*2}
-\titlespacing*{\subsubsection}{0pt}{*1}{*2}
-\titlespacing*{\paragraph}{0pt}{*1}{*2}
-\titlespacing*{\subparagraph}{0pt}{*1}{*2}
+\titlespacing*{\section}{0pt}{0pt}{*2}
+\titlespacing*{\subsection}{0pt}{*2}{*2}
+\titlespacing*{\subsubsection}{0pt}{*2}{*2}
+\titlespacing*{\paragraph}{0pt}{0pt}{*2}
+\titlespacing*{\subparagraph}{0pt}{0pt}{*2}
 
 
 % Переопределение номеров раздаелов, поразделов и т. д.
@@ -140,7 +140,7 @@
 \newcommand{\paragraphbreak}{\clearpage}
 \newcommand{\subparagraphbreak}{\clearpage}
 
-\newcommand{\appendixtitle}{Приложение }
+\newcommand{\appendixtitle}{Приложение}
 
 % Настройка форматирования section, subsection, subsubsetcion, paragraph.
 \titleformat{\section}
@@ -165,8 +165,8 @@
     
 \titleformat{\subparagraph}
     {\filleft\normalsize}
-    {\appendixtitle\thesubparagraph.}
-    {1ex}{#1}
+    {\appendixtitle\ \thesubparagraph}
+    {0pt}{}
 
 
 %---------------------------------------------------------------------------------------
@@ -184,10 +184,10 @@
 \cftsetindents{paragraph}{0pt}{0pt}
 \cftsetindents{subparagraph}{\cftsubsecindent}{0pt}
 
-\renewcommand{\cftsubparapresnum}{\appendixtitle}
-\renewcommand{\cftsubparaaftersnum}{.}
+\renewcommand{\cftsubparapresnum}{\appendixtitle\ }
+%\renewcommand{\cftsubparaaftersnum}{.}
 
-\setlength{\cftsubparanumwidth}{16ex}
+\setlength{\cftsubparanumwidth}{14ex}
 
 \setlength{\cftbeforesecskip}{0.25ex}
 
@@ -257,7 +257,7 @@
 % Окружения для вставки рисунков, таблиц, приложений.
 \newenvironment{gostfigure}{\stepcounter{totfigures}}{}
 \newenvironment{gosttable}{\stepcounter{tottables}}{}
-\newenvironment{gostappendix}[1]{\stepcounter{totappendix}\subparagraph{#1}}{\newpage}
+\newenvironment{gostappendix}[1]{\stepcounter{totappendix}\subparagraph{\empty}\header*{#1}}{\newpage}
 
 % Окружение для библиографии.
 \newenvironment{gostbibliography}[1]{\begingroup\renewcommand{\contentsname}{\referencestitle}\renewcommand{\section}[2]{\header{\contentsname}}\begin{thebibliography}{#1}}{\end{thebibliography}\endgroup\newpage}
