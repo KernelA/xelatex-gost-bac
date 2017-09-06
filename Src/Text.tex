@@ -1,112 +1,98 @@
-\documentclass{bacgost}
-
+\documentclass[rusmathsym, eqnumwithinsec,amspack, hyperref]{bomgost}
 
 
 \input{Optional}
 
 \usepackage{float}
 
-\hypersetup{				
-   unicode=true,            % русские буквы в раздела PDF
-   colorlinks=false,       	% false: ссылки в рамках; true: цветные ссылки
-   linktoc=all,				% ссылки на названиях и номерах страниц в toc
-   bookmarksdepth=5,		% глубина закладок в pdf файле
-   pdftitle={Заголовок},    % Заголовок
-   pdfauthor={Автор},       % Автор
-   pdfsubject={Тема},       % Тема
-   pdfcreator={Создатель},  % Создатель
-   %pdfproducer={Производитель}, % Производитель
-   pdfkeywords={keyword1} {key2} {key3} % Ключевые слова
-   % linkcolor=blue,        % внутренние ссылки
-   % citecolor=black,       % на библиографию
-   % filecolor=magenta,     % на файлы
-   % urlcolor=cyan          % на URL
-} 
-
-
 \begin{document}
 \begin{abstract}
-Выпускная квалификационная работа содержит \pageref*{LastPage}~страниц, \total{totfigures}~рисунок, \total{tottables}~таблиц, \total{totappendix}~приложение, \total{totreferences}~источника. В~некоторых случаях количество приложений не указывается.
+% Чтобы не создавать гиперссыоку, при подключении пакета hyperref, нужно написать \pageref*{LAstPage} вместо \pageref{LastPage}.
+Выпускная квалификационная работа содержит \pageref{LastPage}~страниц, \total{totfigures}~рисунок, \total{tottables}~таблиц, \total{totreferences}~источника. В~некоторых случаях количество приложений не указывается.
+% Для количества источников команда аналогична: \total{totappendix}~приложний.
 
-КЛЮЧЕВОЕ СЛОВО 1, КЛЮЧЕВОЕ СЛОВО 2, КЛЮЧЕВОЕ СЛОВО 3 и т. д.
+КЛЮЧЕВЫЕ СЛОВА 1, КЛЮЧЕВЫЕ СЛОВА 2, КЛЮЧЕВЫЕ СЛОВА 3 и т. д.
 
 Краткое описание работы.
 \end{abstract}
 
 
-\gosttableofcontents
+\tableofcontents
 
 
-\begin{lofab}
+\section*{ОБОЗНАЧЕНИЯ И СОКРАЩЕНИЯ}
 ОДУ - обыкновенные дифференциальные уравнения.
 
 СЛАУ - система линейных алгебраических уравнений.
-\end{lofab}
 
 
-\header{ВВЕДЕНИЕ}
+\section*{ВВЕДЕНИЕ}
 Текст введения.
 
 
 \mainpart
 
 
-\section{ПЕРВЫЙ РАЗДЕЛ}
+\section{ТЕОРЕТИЧЕСКАЯ ЧАСТЬ}
 \subsection{Первый подраздел}
-\subsubsection{Ещё один уровень}
+\subsubsection{Максимальный уровень}
 Здесь какой - то текст. Квадратное уравнение.
+
 \begin{equation}
 f(x) = x^2 + x-2.
 \end{equation}
+
 График представлен на рисунке ниже.
 % Важно добавлять каждый рисунок в окружение gostfigure, чтобы был правильный подсчёт общего числа рисунков.
 \begin{gostfigure}
-\begin{center} 
+\begin{figure}[H]
+\centering
 \begin{tikzpicture}
 \begin{axis}[domain=-3:3, width = 0.8 \textwidth, grid = both, ylabel style={rotate=-90}, xlabel = \(x\), ylabel = \(f(x)\)]
 \addplot[mark=none, thick]{x*x + x - 2};
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{График \(f(x)\).}
-\end{center}
+\caption{График \(f(x)\).}
+\end{figure}
 \end{gostfigure}
 
-Корни квадратного уравнения представлены в~таблице. вставлять таблицы.
+Корни квадратного уравнения представлены в~таблице~\ref{tab:roots}.
 % Аналогично с таблицами.
 \begin{gosttable}
-\begin{center} 
-\captionof{table}{Корни квадратного уравнения.}
+\begin{table}[H]
+\centering
+\caption{Корни квадратного уравнения.}
+\label{tab:roots}
 \begin{tabular}{|c|c|}
 \hline 
 Первый корень &  Второй корень \\ 
 \hline 
 1 & -2  \\ 
 \hline 
-\end{tabular} 
-\end{center}
+\end{tabular}
+\end{table}
 \end{gosttable}
 
-\[
-\int x\,d\,x = \dfrac{x^2}{2} + C.
-\]
 
-\section{ВТОРОЙ РАЗДЕЛ}
-\[
-\dfrac{d\,e^x}{d\,x} = e^x.
-\]
 
-\header{ЗАКЛЮЧЕНИЕ}
-Интересная статья по нейронным сетям \cite{Cybenko}.
+\section{ПРАКТИЧЕСКАЯ ЧАСТЬ}
+\subsection{Дифференцирование}
+\subsubsection{Дифференцирование квадратного уравнения}
+\begin{equation}
+\dfrac{d\,f(x)}{d\,x} = 2 x + 1.
+\end{equation}
 
+\section*{ЗАКЛЮЧЕНИЕ}
+Интересная статья, связанная с~нейронными сетями, \cite{Cybenko}.
 
 % Список литературы.
-\begin{gostbibliography}{11}
+\begin{thebibliography}{11}
 \bibitem{Bard} Бард Й. Нелинейное оценивание параметров / Й. Бард, Москва: Статистика, 1979. 349 c.
 \bibitem{Volterra} Вольтерра В. Математическая теория борьбы за существование // Усп. физ. наук. 1928. № 1 (8). C. 13–34.
 \bibitem{Cybenko} Cybenko G. Approximation by Superpositions of a Sigmoidal Function // Mathematics of Control, Signals, and Systems. 1989. (2). C. 303–314.
-\end{gostbibliography}
+\end{thebibliography}
 
-\appendixes
+\appendix
 
 \begin{gostappendix}{Программный код}
 \lstset{language=[11]c++,basicstyle=\ttfamily, showstringspaces=false}
@@ -183,5 +169,6 @@ int main()
 \end{tabular} 
 \end{table}
 \end{gostappendix}
+
 
 \end{document}
