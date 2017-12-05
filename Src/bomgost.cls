@@ -1,5 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bomgost}[2017/09/06 Version 0.1.0 XeLaTeX class for bachelor and magister work.]
+
+\ProvidesClass{bomgost}[2017/12/05 The version 0.1.0.1. The XeLaTeX class for the bachelor's or master's thesis.]
 
 \LoadClass[14pt, oneside]{extarticle}
 
@@ -57,10 +58,13 @@
 \setdefaultlanguage[spelling=modern]{russian}
 \setotherlanguage{english}
 
+% Включение стандартных сокращений для кавычек и разлисных видов тире.
+\defaultfontfeatures{Ligatures=TeX}
+
 % Установка шрифтов.
-\setmainfont[Mapping=tex-text]{Times New Roman}
-\setmonofont[Mapping=tex-text]{Courier New}
-\setsansfont[Mapping=tex-text]{Arial}
+\setmainfont{Times New Roman}
+\setmonofont{Courier New}
+\setsansfont{Arial}
 
 % Для избежания ошибки о том, что не определён шрифт для кириллических символов.
 \newfontfamily\cyrillicfont{Times New Roman}[Script=Cyrillic]

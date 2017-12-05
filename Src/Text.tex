@@ -1,17 +1,27 @@
-\documentclass[rusmathsym, eqnumwithinsec,amspack, hyperref]{bomgost}
+\documentclass[rusmathsym, eqnumwithinsec, amspack, hyperref]{bomgost}
 
 
 \input{Optional}
 
 \usepackage{float}
 
+\author{}
+\title{Пример документа при использовании \texttt{bomgost.cls}}
+\date{\today}
+
 \begin{document}
+
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
 \begin{abstract}
-% Чтобы не создавать гиперссыоку, при подключении пакета hyperref, нужно написать \pageref*{LAstPage} вместо \pageref{LastPage}.
+% Чтобы не создавать гиперссыоку, при подключении пакета hyperref, нужно написать \pageref*{LastPage} вместо \pageref{LastPage}.
 Выпускная квалификационная работа содержит \pageref{LastPage}~страниц, \total{totfigures}~рисунок, \total{tottables}~таблиц, \total{totreferences}~источника. В~некоторых случаях количество приложений не указывается.
 % Для количества источников команда аналогична: \total{totappendix}~приложний.
 
-КЛЮЧЕВЫЕ СЛОВА 1, КЛЮЧЕВЫЕ СЛОВА 2, КЛЮЧЕВЫЕ СЛОВА 3 и т. д.
+КЛЮЧЕВОЕ СЛОВО~1, КЛЮЧЕВОЕ СЛОВО~2, КЛЮЧЕВОЕ СЛОВО~3 и т. д.
 
 Краткое описание работы.
 \end{abstract}
