@@ -4,9 +4,8 @@
 
 \LoadClass[14pt, oneside]{extarticle}
 
-\RequirePackage{fontspec}
-
 % Спецификация для различных языков.
+% Автоматически загружается fontspec.
 \RequirePackage{polyglossia}
 
 \RequirePackage{etoolbox}
