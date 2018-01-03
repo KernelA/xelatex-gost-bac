@@ -1,12 +1,15 @@
 \documentclass[rusmathsym, eqnumwithinsec, amspack, hyperref]{bomgost}
 
 
-\input{Optional}
+% Для вставки программного кода.
+\usepackage{listings}
 
+% "Умная" запятая: \(0,2\) - число, \(0, 2\) - перечисление.
+\usepackage{icomma}
 \usepackage{float}
 
 \author{}
-\title{Пример документа при использовании \texttt{bomgost.cls}}
+\title{Пример на основе класса документа \texttt{bomgost.cls}}
 \date{\today}
 
 \begin{document}
@@ -57,11 +60,7 @@ f(x) = x^2 + x-2.
 \begin{gostfigure}
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}
-\begin{axis}[domain=-3:3, width = 0.8 \textwidth, grid = both, ylabel style={rotate=-90}, xlabel = \(x\), ylabel = \(f(x)\)]
-\addplot[mark=none, thick]{x*x + x - 2};
-\end{axis}
-\end{tikzpicture}
+\includegraphics[width=0.8 \textwidth]{Picture.pdf}
 \caption{График \(f(x)\).}
 \end{figure}
 \end{gostfigure}
@@ -89,7 +88,7 @@ f(x) = x^2 + x-2.
 \subsection{Дифференцирование}
 \subsubsection{Дифференцирование квадратного уравнения}
 \begin{equation}
-\dfrac{d\,f(x)}{d\,x} = 2 x + 1.
+\dfrac{d f(x)}{d x} = 2 x + 1.
 \end{equation}
 
 \section*{ЗАКЛЮЧЕНИЕ}
@@ -146,7 +145,8 @@ int main()
 \hline 
 97 & 888 & 436 & 64 \\ 
 \hline 
-1 & 2 & 4 & 7 \\ 
+1 & 2 & 4 & 7 \\
+\hline
 984 & 12 & 354 & 7 \\ 
 \hline 
 748 & 89 & 2 & 31 \\ 
@@ -161,7 +161,8 @@ int main()
 \hline 
 97 & 888 & 436 & 64 \\ 
 \hline 
-1 & 2 & 4 & 7 \\ 
+1 & 2 & 4 & 7 \\
+\hline
 748 & 89 & 2 & 31 \\ 
 \hline 
 124 & 78 & 99 & 993431 \\ 

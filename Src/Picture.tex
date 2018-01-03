@@ -1,0 +1,15 @@
+\documentclass[class=bomgost,tikz]{standalone}
+
+%\pagestyle{empty}
+
+%\geometry{margin=0pt}
+
+\pgfplotsset{compat=newest}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[domain=-3:3, width = 0.8 \textwidth, grid = both, ylabel style={rotate=-90}, xlabel = \(x\), ylabel = \(f(x)\)]
+\addplot[mark=none, thick]{x*x + x - 2};
+\end{axis}
+\end{tikzpicture}
+\end{document}
