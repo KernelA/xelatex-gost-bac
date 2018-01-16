@@ -17,7 +17,7 @@
 
 Список всех пакетов, которые используются в шаблоне, приведён в [Wiki проекта](https://github.com/KernelA/xelatex-gost-bac/wiki).
 
-## Как использовать?
+## Как использовать
 
 Более подробное описание располагается во вкладке [Wiki проекта](https://github.com/KernelA/xelatex-gost-bac/wiki).
 
