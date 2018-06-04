@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{bomgost}[2017/12/05 The version 0.1.0.1. The XeLaTeX class for the bachelor's or master's thesis.]
+\ProvidesClass{bomgost}[2018/06/04 The version 0.1.0.2. The XeLaTeX class for the bachelor's or master's thesis.]
 
 \LoadClass[14pt, oneside]{extarticle}
 
@@ -125,14 +125,12 @@
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[R]{\thepage}
-\fancyheadoffset{0mm}
-\fancyfootoffset{0mm}
-\setlength{\headheight}{17pt}
+\rhead{\thepage}
+\setlength{\headheight}{1.5em}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-\fancypagestyle{plain}{ 
-    \fancyhf{}
+\fancypagestyle{plain}{%
+    \fancyhf{}%
     \rhead{\thepage}}
 
 
