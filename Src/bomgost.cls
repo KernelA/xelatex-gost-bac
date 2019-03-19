@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{bomgost}[2018/06/04 The version 0.1.0.2. The XeLaTeX class for the bachelor's or master's thesis.]
+\ProvidesClass{bomgost}[2019/03/19 The version is 0.1.0.3. The XeLaTeX class for the bachelor's or master's thesis.]
 
 \LoadClass[14pt, oneside]{extarticle}
 
@@ -67,7 +67,7 @@
 
 % Для избежания ошибки о том, что не определён шрифт для кириллических символов.
 \newfontfamily\cyrillicfont{Times New Roman}[Script=Cyrillic]
-\newfontfamily\cyrillicfonttt{Courier New}[Script=Cyrillic]
+\newfontfamily\cyrillicfonttt{Courier New}% [Script=Cyrillic]
 \newfontfamily\cyrillicfontsf{Arial}[Script=Cyrillic]
 
 %---------------------------------------------------------------------------------------
@@ -282,7 +282,7 @@
 \newcommand*{\toctitle}{СОДЕРЖАНИЕ}
 
 % Переопределение окружения для реферата.
-\renewenvironment{abstract}{\section*{\abstracttitle}}{\clearpage}
+\renewenvironment{abstract}{\oldsection*{\abstracttitle}}{\clearpage}
 
 % Окружения для вставки рисунков, таблиц, приложений.
 \newenvironment{gostfigure}{\stepcounter{totfigures}}{}
