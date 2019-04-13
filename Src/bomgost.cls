@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{bomgost}[2019/04/13 The version is 0.1.1. The XeLaTeX class for the bachelor's or master's thesis.]
+\ProvidesClass{bomgost}[2019/04/13 The version is 0.1.1.1. The XeLaTeX class for the bachelor's or master's thesis.]
 
 \LoadClass[14pt, oneside]{extarticle}
 
@@ -354,6 +354,8 @@
 
 % Расчёт значений для общего числа использованных источников
 \newcommand*{\printtotref}[1][,]{%
+\boolfalse{less11Q}%
+\boolfalse{greater19Q}%
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\totvalue{totreferences}-100*(\totvalue{totreferences}/100)}%
 \ifnumequal{\totvalue{totreferences}}{-1}%
@@ -396,6 +398,8 @@
 
 % Расчёт значений для общего числа рисунков
 \newcommand*{\printtotfig}[1][,]{%
+\boolfalse{less11Q}%
+\boolfalse{greater19Q}%
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\totvalue{totfigures}-100*(\totvalue{totfigures}/100)}%
 \ifnumequal{\totvalue{totfigures}}{-1}%
@@ -431,6 +435,8 @@
 
 % Расчёт значений для общего числа таблиц
 \newcommand*{\printtottab}[1][,]{%
+\boolfalse{less11Q}%
+\boolfalse{greater19Q}%
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\totvalue{tottables}-100*(\totvalue{tottables}/100)}%
 \ifnumequal{\totvalue{tottables}}{-1}%
@@ -472,6 +478,8 @@
 
 
 \newcommand*{\printtotpage}[1][,]{%
+\boolfalse{less11Q}%
+\boolfalse{greater19Q}%
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\value{TotPages}-100*(\value{TotPages}/100)}%
 \ifnumequal{\value{TotPages}}{-1}%
@@ -501,6 +509,8 @@
 
 % Расчёт значений для общего числа рисунков
 \newcommand*{\printtotapp}[1][,]{%
+\boolfalse{less11Q}%
+\boolfalse{greater19Q}%
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\totvalue{totappendix}-100*(\totvalue{totappendix}/100)}%
 \ifnumequal{\totvalue{totappendix}}{-1}%
