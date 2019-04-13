@@ -20,7 +20,8 @@
 ## Как использовать
 
 Для компиляции необходимо включить e-TeX. Например, если компилировать с помощью `xelatex` в [MiKTeX](https://miktex.org/), то необходимо указать дополнительную опцию `-enable-etex`:
-```xelatex -halt-on-error -enable-etex Example.tex
+```
+xelatex -halt-on-error -enable-etex Example.tex
 ```
 
 Более подробное описание располагается во вкладке [Wiki проекта](https://github.com/KernelA/xelatex-gost-bac/wiki).
