@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{bomgost}[2019/03/19 The version is 0.1.0.3. The XeLaTeX class for the bachelor's or master's thesis.]
+\ProvidesClass{bomgost}[2019/04/13 The version is 0.1.1. The XeLaTeX class for the bachelor's or master's thesis.]
 
 \LoadClass[14pt, oneside]{extarticle}
 
@@ -81,7 +81,7 @@
 \frenchspacing
 
 % Узнать, сколько всего страниц в документе.
-\RequirePackage{lastpage} 
+\RequirePackage[nodvi]{totpages} 
 
 % Первая строка начинается с отступа.
 \RequirePackage{indentfirst}
@@ -333,6 +333,200 @@
 \addtolength{\cftsubparanumwidth}{3ex}%
 \renewcommand{\contentsname}{\toctitle}%
 \renewcommand{\refname}{\referencestitle}%
+}
+
+
+\newcounter{Ptempnumexpr}
+\newcounter{Pwordindex}
+
+\newbool{less11Q}
+\newbool{greater19Q}
+
+
+
+% Выбор правильного окончания окончание для множественного числа слова на основании числа
+% Необходимы окончания для чисел (1, 4, 5)
+\newcommand*{\refoneendian}{\total{totreferences}~использованный источник}
+\newcommand*{\reffourendian}{\total{totreferences}~использованных источника}
+\newcommand*{\reffiveendian}{\total{totreferences}~использованных источника}
+% Например 'яблоко', 'яблока', 'яблок'
+% Расчёт основан на статье: https://habr.com/ru/post/105428/
+
+% Расчёт значений для общего числа использованных источников
+\newcommand*{\printtotref}[1][,]{%
+\setcounter{Ptempnumexpr}{0}%
+\addtocounter{Ptempnumexpr}{\numexpr\totvalue{totreferences}-100*(\totvalue{totreferences}/100)}%
+\ifnumequal{\totvalue{totreferences}}{-1}%
+{??}%
+{%
+    \ifnumequal{\totvalue{totreferences}}{0}{}%
+    {%
+        \ifnumless{\value{Ptempnumexpr}}{11}{\booltrue{less11Q}}{}%
+        \ifnumgreater{\value{Ptempnumexpr}}{19}{\booltrue{greater19Q}}{}%
+        \ifboolexpr{bool {less11Q} or bool {greater19Q}}%
+        {%
+            \setcounter{Pwordindex}{0}%
+            \addtocounter{Pwordindex}{\numexpr\value{Ptempnumexpr}-10*(\value{Ptempnumexpr}/10)}%
+            % Окончание для 1
+            \ifnumequal{\value{Pwordindex}}{1}%
+            {\refoneendian#1\ }%
+            {%
+                % Окончание для 4
+                \ifnumequal{\value{Pwordindex}}{2}%
+                {\reffourendian#1\ }%
+                {%
+                    \ifnumequal{\value{Pwordindex}}{3}%
+                    {\reffourendian#1}%
+                    {%
+                        \ifnumequal{\value{Pwordindex}}{4}%
+                        {\reffourendian#1\ }%
+                        {\reffiveendian#1\ }% Окончание для 5
+                    }%
+                }%
+            }%
+        }%
+        {\reffiveendian#1\ }% Окончане для 5
+    }%
+}%
+}
+
+\newcommand*{\figoneendian}{\total{totfigures}~рисунок}
+\newcommand*{\figfourendian}{\total{totfigures}~рисунка}
+\newcommand*{\figfiveendian}{\total{totfigures}~рисунков}
+
+% Расчёт значений для общего числа рисунков
+\newcommand*{\printtotfig}[1][,]{%
+\setcounter{Ptempnumexpr}{0}%
+\addtocounter{Ptempnumexpr}{\numexpr\totvalue{totfigures}-100*(\totvalue{totfigures}/100)}%
+\ifnumequal{\totvalue{totfigures}}{-1}%
+{??}%
+{\ifnumequal{\totvalue{totfigures}}{0}{}%
+    {\ifnumless{\value{Ptempnumexpr}}{11}{\booltrue{less11Q}}{}%
+        \ifnumgreater{\value{Ptempnumexpr}}{19}{\booltrue{greater19Q}}{}%
+        \ifboolexpr{bool {less11Q} or bool {greater19Q}}%
+        {\setcounter{Pwordindex}{0}%
+            \addtocounter{Pwordindex}{\numexpr\value{Ptempnumexpr}-10*(\value{Ptempnumexpr}/10)}%
+            \ifnumequal{\value{Pwordindex}}{1}% Окончание для 1
+            {\figoneendian#1\ }%
+            {\ifnumequal{\value{Pwordindex}}{2}% Окончание для 4
+                {\figfourendian#1\ }%
+                {\ifnumequal{\value{Pwordindex}}{3}%
+                    {\figfourendian#1\ }%
+                    {\ifnumequal{\value{Pwordindex}}{4}%
+                        {\figfourendian#1\ }%
+                        {\figfiveendian#1\ }% Окончание для 5
+                    }%
+                }%
+            }%
+        }%
+        {\figfiveendian#1\ }% Окончане для 5
+    }%
+}%
+}
+
+\newcommand*{\taboneendian}{\total{tottables}~таблицу}
+\newcommand*{\tabfourendian}{\total{tottables}~таблицы}
+\newcommand*{\tabfiveendian}{\total{tottables}~таблиц}
+
+
+% Расчёт значений для общего числа таблиц
+\newcommand*{\printtottab}[1][,]{%
+\setcounter{Ptempnumexpr}{0}%
+\addtocounter{Ptempnumexpr}{\numexpr\totvalue{tottables}-100*(\totvalue{tottables}/100)}%
+\ifnumequal{\totvalue{tottables}}{-1}%
+{??}
+{%
+    \ifnumequal{\totvalue{tottables}}{0}{}%
+    {%
+        \ifnumless{\value{Ptempnumexpr}}{11}{\booltrue{less11Q}}{}%
+        \ifnumgreater{\value{Ptempnumexpr}}{19}{\booltrue{greater19Q}}{}%
+        \ifboolexpr{bool {less11Q} or bool {greater19Q}}%
+        {%
+            \setcounter{Pwordindex}{0}%
+            \addtocounter{Pwordindex}{\numexpr\value{Ptempnumexpr}-10*(\value{Ptempnumexpr}/10)}%
+            \ifnumequal{\value{Pwordindex}}{1}% Окончание для 1
+            {\taboneendian#1\ }%
+            {%
+                % Окончание для 4
+                \ifnumequal{\value{Pwordindex}}{2}%
+                {\tabfourendian#1\ }%
+                {%
+                    \ifnumequal{\value{Pwordindex}}{3}%
+                    {\tabfourendian#1\ }%
+                    {%
+                        \ifnumequal{\value{Pwordindex}}{4}%
+                        {\tabfourendian#1\ }%
+                        {\tabfiveendian#1\ }% Окончание для 5
+                    }%
+                }%
+            }%
+        }% Окончане для 5
+        {\tabfiveendian#1\ }%
+    }%
+}%
+}
+
+
+\newcommand*{\pagefourendian}{\ifbool{hyperrefQ}{\pageref*{TotPages}~страницы}{\pageref{TotPages}~страницы}}
+\newcommand*{\pagefiveendian}{\ifbool{hyperrefQ}{\pageref*{TotPages}~страниц}{\pageref{TotPages}~страниц}}
+
+
+\newcommand*{\printtotpage}[1][,]{%
+\setcounter{Ptempnumexpr}{0}%
+\addtocounter{Ptempnumexpr}{\numexpr\value{TotPages}-100*(\value{TotPages}/100)}%
+\ifnumequal{\value{TotPages}}{-1}%
+{??}%
+{\ifnumless{\value{Ptempnumexpr}}{11}{\booltrue{less11Q}}{}%
+\ifnumgreater{\value{Ptempnumexpr}}{19}{\booltrue{greater19Q}}{}%
+        \ifboolexpr{bool {less11Q} or bool {greater19Q}}%
+        {\setcounter{Pwordindex}{0}%
+            \addtocounter{Pwordindex}{\numexpr\value{Ptempnumexpr}-10*(\value{Ptempnumexpr}/10)}%
+            \ifnumequal{\value{Pwordindex}}{2}% Окончание для 4
+            {\pagefourendian#1\ }%
+            {\ifnumequal{\value{Pwordindex}}{3}%
+                {\pagefourendian#1\ }%
+                {\ifnumequal{\value{Pwordindex}}{4}%
+                    {\pagefourendian#1\ }%
+                    {\pagefiveendian#1\ }%  Окончание для 5
+                }%
+            }%
+        }% Окончане для 5
+        {\pagefiveendian#1\ }%
+}%
+}
+
+\newcommand*{\apponeendian}{\total{totappendix}~приложение}
+\newcommand*{\appfourendian}{\total{totappendix}~приложения}
+\newcommand*{\appfiveendian}{\total{totappendix}~приложений}
+
+% Расчёт значений для общего числа рисунков
+\newcommand*{\printtotapp}[1][,]{%
+\setcounter{Ptempnumexpr}{0}%
+\addtocounter{Ptempnumexpr}{\numexpr\totvalue{totappendix}-100*(\totvalue{totappendix}/100)}%
+\ifnumequal{\totvalue{totappendix}}{-1}%
+{??}%
+{\ifnumequal{\totvalue{totappendix}}{0}{}%
+    {\ifnumless{\value{Ptempnumexpr}}{11}{\booltrue{less11Q}}{}%
+        \ifnumgreater{\value{Ptempnumexpr}}{19}{\booltrue{greater19Q}}{}%
+        \ifboolexpr{bool {less11Q} or bool {greater19Q}}%
+        {\setcounter{Pwordindex}{0}%
+            \addtocounter{Pwordindex}{\numexpr\value{Ptempnumexpr}-10*(\value{Ptempnumexpr}/10)}%
+            \ifnumequal{\value{Pwordindex}}{1}% Окончание для 1
+            {\apponeendian#1\ }%
+            {\ifnumequal{\value{Pwordindex}}{2}% Окончание для 4
+                {\appfourendian#1\ }%
+                {\ifnumequal{\value{Pwordindex}}{3}%
+                    {\appfourendian#1\ }%
+                    {\ifnumequal{\value{Pwordindex}}{4}%
+                        {\appfourendian#1\ }%
+                        {\appfiveendian#1\ }% Окончание для 5
+                    }%
+                }%
+            }%
+        }%
+        {\appfiveendian#1\ }% Окончане для 5
+    }%
+}%
 }
 
 
