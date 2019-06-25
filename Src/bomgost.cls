@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{bomgost}[2019/04/13 The version is 0.1.1.1. The XeLaTeX class for the bachelor's or master's thesis.]
+\ProvidesClass{bomgost}[2019/06/08 The version is 0.1.1.2 The XeLaTeX class for the bachelor's or master's thesis.]
 
 \LoadClass[14pt, oneside]{extarticle}
 
@@ -142,8 +142,8 @@
 
 % Настройка вертикальных и горизонтальных отступов.
 \titlespacing*{\section}{0pt}{0pt}{*2}
-\titlespacing*{\subsection}{0pt}{0pt}{*2}
-\titlespacing*{\subsubsection}{0pt}{0pt}{*2}
+\titlespacing*{\subsection}{0pt}{*2}{*2}
+\titlespacing*{\subsubsection}{0pt}{*2}{*2}
 \titlespacing*{\subparagraph}{0pt}{0pt}{*2}
 
 
@@ -348,7 +348,7 @@
 % Необходимы окончания для чисел (1, 4, 5)
 \newcommand*{\refoneendian}{\total{totreferences}~использованный источник}
 \newcommand*{\reffourendian}{\total{totreferences}~использованных источника}
-\newcommand*{\reffiveendian}{\total{totreferences}~использованных источника}
+\newcommand*{\reffiveendian}{\total{totreferences}~использованных источников}
 % Например 'яблоко', 'яблока', 'яблок'
 % Расчёт основан на статье: https://habr.com/ru/post/105428/
 
@@ -359,7 +359,7 @@
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\totvalue{totreferences}-100*(\totvalue{totreferences}/100)}%
 \ifnumequal{\totvalue{totreferences}}{-1}%
-{??}%
+{??#1}%
 {%
     \ifnumequal{\totvalue{totreferences}}{0}{}%
     {%
@@ -403,7 +403,7 @@
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\totvalue{totfigures}-100*(\totvalue{totfigures}/100)}%
 \ifnumequal{\totvalue{totfigures}}{-1}%
-{??}%
+{??#1}%
 {\ifnumequal{\totvalue{totfigures}}{0}{}%
     {\ifnumless{\value{Ptempnumexpr}}{11}{\booltrue{less11Q}}{}%
         \ifnumgreater{\value{Ptempnumexpr}}{19}{\booltrue{greater19Q}}{}%
@@ -440,7 +440,7 @@
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\totvalue{tottables}-100*(\totvalue{tottables}/100)}%
 \ifnumequal{\totvalue{tottables}}{-1}%
-{??}
+{??#1}%
 {%
     \ifnumequal{\totvalue{tottables}}{0}{}%
     {%
@@ -483,7 +483,7 @@
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\value{TotPages}-100*(\value{TotPages}/100)}%
 \ifnumequal{\value{TotPages}}{-1}%
-{??}%
+{??#1}%
 {\ifnumless{\value{Ptempnumexpr}}{11}{\booltrue{less11Q}}{}%
 \ifnumgreater{\value{Ptempnumexpr}}{19}{\booltrue{greater19Q}}{}%
         \ifboolexpr{bool {less11Q} or bool {greater19Q}}%
@@ -514,7 +514,7 @@
 \setcounter{Ptempnumexpr}{0}%
 \addtocounter{Ptempnumexpr}{\numexpr\totvalue{totappendix}-100*(\totvalue{totappendix}/100)}%
 \ifnumequal{\totvalue{totappendix}}{-1}%
-{??}%
+{??#1}%
 {\ifnumequal{\totvalue{totappendix}}{0}{}%
     {\ifnumless{\value{Ptempnumexpr}}{11}{\booltrue{less11Q}}{}%
         \ifnumgreater{\value{Ptempnumexpr}}{19}{\booltrue{greater19Q}}{}%
