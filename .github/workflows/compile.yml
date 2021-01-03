@@ -9,17 +9,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    container: miktex/miktex:2.9.6990
+    container: texlive/texlive:latest-with-cache
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install fonts
+      - name: Install Times New Roman fonts and other
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: |
           apt update
-          DEBIAN_FRONTEND=noninteractive apt install -y ttf-mscorefonts-installer
-
+          apt install -y software-properties-common
+          DEBIAN_CODENAME=$(lsb_release -c | cut -f2)
+          apt-add-repository "deb http://ftp.de.debian.org/debian $DEBIAN_CODENAME main contrib"
+          apt update
+          apt install -y ttf-mscorefonts-installer
       - name: Compile LaTeX document
         working-directory: ./Src
-        run: xelatex -halt-on-error -enable-etex -enable-installer ./Example.tex
+        run: |
+          latexmk -verbose -xelatex -latexoption='-halt-on-error -enable-etex -enable-installer' ./Picture.tex
+          latexmk -verbose -xelatex -latexoption='-halt-on-error -enable-etex -enable-installer' ./Example.tex
+          
         
 
