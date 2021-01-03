@@ -28,6 +28,11 @@ jobs:
         run: |
           latexmk -verbose -xelatex -latexoption='-halt-on-error -enable-etex -enable-installer' ./Picture.tex
           latexmk -verbose -xelatex -latexoption='-halt-on-error -enable-etex -enable-installer' ./Example.tex
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Example.pdf
+          path: ./Src/Example.pdf
           
         
 
