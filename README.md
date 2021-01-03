@@ -1,11 +1,13 @@
 # ВКР бакалавра или магистра
 
+![XeLaTeX auto compile](https://github.com/KernelA/xelatex-gost-bac/workflows/XeLaTeX%20auto%20compile/badge.svg?branch=master)
+
 Шаблон для оформления ВКР бакалавра или магистра в XeLaTeX. Шаблон представлен в виде класса документа `bomgost.cls`.
 
 
 ## Пример оформления
 
-Пример расположен в папке `Example/Text.pdf`.
+Начиная c v0.1.1.3 пример можно посмотреть после запуска конвеера через GitHub Actions. В разделе Artifacts будет архив с pdf документом, который можно скачать.
 
 ## Возможные проблемы
 
