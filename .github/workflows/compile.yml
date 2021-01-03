@@ -1,0 +1,38 @@
+name: XeLaTeX auto compile
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    container: texlive/texlive:latest-with-cache
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Times New Roman fonts and other
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          apt update
+          apt install -y software-properties-common
+          DEBIAN_CODENAME=$(lsb_release -c | cut -f2)
+          apt-add-repository "deb http://ftp.de.debian.org/debian $DEBIAN_CODENAME main contrib"
+          apt update
+          apt install -y ttf-mscorefonts-installer
+      - name: Compile LaTeX document
+        working-directory: ./Src
+        run: |
+          latexmk -verbose -xelatex -latexoption='-halt-on-error -enable-etex -enable-installer' ./Picture.tex
+          latexmk -verbose -xelatex -latexoption='-halt-on-error -enable-etex -enable-installer' ./Example.tex
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Example.pdf
+          path: ./Src/Example.pdf
+          
+        
+

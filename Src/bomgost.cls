@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{bomgost}[2019/06/08 The version is 0.1.1.2 The XeLaTeX class for the bachelor's or master's thesis.]
+\ProvidesClass{bomgost}[2021/01/03 The version is 0.1.1.3 The XeLaTeX class for the bachelor's or master's thesis.]
 
 \LoadClass[14pt, oneside]{extarticle}
 
@@ -549,25 +549,21 @@
 
 \renewcommand{\appendix}{\printappendixes}
 
+% Переопределение команды, чтобы номера списка литературы были формата '9.', а не '[9]'.
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
 \AtEndOfClass{%
    % Пакет для гиперссылок в документе.
    % Для избежания различных проблем с корректностью гиперссылок в оглавлении этот пакет следует подключать последним.
    \ifbool{hyperrefQ}{%
-        \RequirePackage{hyperref}%    
+        \RequirePackage{hyperref}%
         \hypersetup{%
             bookmarksnumbered,     % номера section, subsection и т. д. попадали в название закладок в pdf документе. Если эту опцию отключить, то pdf закладки, для приложений, будут с пустым текстом. 
             unicode=true,          % русские буквы в закладках PDF
             linktoc=all,           % ссылки на названиях и номерах страниц в toc
             bookmarksdepth=3       % глубина закладок в pdf файле
         }%
-        % Изменение уровня \subparagraph (приложения) в закладках pdf документа. Это нужно для сохранения правильной иерархии закладок в pdf документе.
-        \makeatletter%
-        \renewcommand\toclevel@subparagraph{2}%
-        \makeatother%
     }{}
-
-% Переопределение команды, чтобы номера списка литературы были формата '9.', а не '[9]'.
-\makeatletter
-\renewcommand\@biblabel[1]{#1.}
-\makeatother
 }

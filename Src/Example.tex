@@ -1,5 +1,11 @@
 \documentclass[rusmathsym, eqnumwithinsec, amspack, hyperref]{bomgost}
 
+% Закомментируйте это, если hyperref не нужен. 
+% Изменение уровня \subparagraph (приложения) в закладках pdf документа. 
+% Это нужно для сохранения правильной иерархии закладок в pdf документе.
+\makeatletter%
+\renewcommand{\toclevel@subparagraph}{2}%
+\makeatother% 
 
 % Для вставки программного кода.
 \usepackage{listings}
@@ -11,6 +17,8 @@
 \author{}
 \title{Пример на основе класса документа \texttt{bomgost.cls}}
 \date{\today}
+
+
 
 \begin{document}
 
