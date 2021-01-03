@@ -1,0 +1,25 @@
+name: XeLaTeX auto compile
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    container: miktex/miktex:2.9.6990
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install fonts
+        run: |
+          apt update
+          DEBIAN_FRONTEND=noninteractive apt install -y ttf-mscorefonts-installer
+
+      - name: Compile LaTeX document
+        working-directory: ./Src
+        run: xelatex -halt-on-error -enable-etex -enable-installer ./Example.tex
+        
+
