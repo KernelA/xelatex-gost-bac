@@ -5,26 +5,18 @@ on:
     branches: [master, develop]
   pull_request:
     branches: [master, develop]
+  schedule:
+    - cron: 0 3 20 * *
   workflow_dispatch:
     
 
 jobs:
   build:
     runs-on: ubuntu-20.04
-    container: texlive/texlive:latest-with-cache
+    container: kernela/texlive-gost-bac
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install Times New Roman fonts and other
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        run: |
-          apt update
-          apt install -y software-properties-common
-          DEBIAN_CODENAME=$(lsb_release -c | cut -f2)
-          apt-add-repository "deb http://ftp.de.debian.org/debian $DEBIAN_CODENAME main contrib"
-          apt update
-          apt install -y ttf-mscorefonts-installer
       - name: Compile LaTeX document
         working-directory: ./Src
         run: |
@@ -34,6 +26,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Example.pdf
+          retention-days: 30
           path: ./Src/Example.pdf
           
         
