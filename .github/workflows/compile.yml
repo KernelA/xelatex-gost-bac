@@ -16,14 +16,14 @@ jobs:
     container: kernela/texlive-gost-bac
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Compile LaTeX document
         working-directory: ./Src
         run: |
           latexmk -verbose -xelatex -latexoption='-halt-on-error -enable-etex -enable-installer' ./Picture.tex
           latexmk -verbose -xelatex -latexoption='-halt-on-error -enable-etex -enable-installer' ./Example.tex
       
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: Example.pdf
           retention-days: 30
