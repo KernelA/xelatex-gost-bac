@@ -13,6 +13,9 @@
 % "Умная" запятая: \(0,2\) - число, \(0, 2\) - перечисление.
 \usepackage{icomma}
 \usepackage{float}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=newest}
 
 \author{}
 \title{Пример на основе класса документа \texttt{bomgost.cls}}
@@ -70,7 +73,11 @@ f(x) = x^2 + x-2.
 \begin{gostfigure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8 \textwidth]{Picture.pdf}
+\begin{tikzpicture}
+  \begin{axis}[domain=-3:3, width = 0.8 \textwidth, grid = both, ylabel style={rotate=-90}, xlabel = \(x\), ylabel = \(f(x)\)]
+  \addplot[mark=none, thick]{x*x + x - 2};
+  \end{axis}
+\end{tikzpicture}
 \caption{График \(f(x)\).}
 \end{figure}
 \end{gostfigure}
