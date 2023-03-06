@@ -184,4 +184,5 @@ Src/*.pdf
 .vscode
 
 *.ps1
-*.synctext*
+*.synctex(busy)
+*.xdv
