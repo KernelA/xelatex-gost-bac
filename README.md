@@ -5,6 +5,10 @@
 Шаблон для оформления ВКР бакалавра или магистра в XeLaTeX. Шаблон представлен в виде класса документа `bomgost.cls`.
 
 
+## Интерактивный пример в Overleaf
+
+[Проект в Overleaf](https://www.overleaf.com/2912326173dfpykzdtvmjr)
+
 ## Пример оформления
 
 Начиная c v0.1.1.3 пример можно посмотреть после запуска конвеера через GitHub Actions. [В разделе Artifacts](https://github.com/actions/upload-artifact#where-does-the-upload-go) будет архив с pdf документом, который можно скачать.

@@ -184,3 +184,4 @@ Src/*.pdf
 .vscode
 
 *.ps1
+*.synctext*
