@@ -7,7 +7,7 @@
 
 ## Интерактивный пример в Overleaf
 
-[Проект в Overleaf (нужна регистрация для просмотра)](https://www.overleaf.com/2912326173dfpykzdtvmjr)
+[Проект в Overleaf (нужна регистрация для просмотра)](https://www.overleaf.com/read/hvxgxfnsskrm)
 
 ## Пример оформления
 
