@@ -1,5 +1,7 @@
 \documentclass[rusmathsym, eqnumwithinsec, amspack, hyperref]{bomgost}
 
+\input{letters.def}
+
 % Закомментируйте это, если hyperref не нужен. 
 % Изменение уровня \subparagraph (приложения) в закладках pdf документа. 
 % Это нужно для сохранения правильной иерархии закладок в pdf документе.
@@ -14,17 +16,28 @@
 \usepackage{icomma}
 \usepackage{float}
 \usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{longtable}
+\usepackage{cleveref}
+
 
 \pgfplotsset{compat=newest}
+
+\pgfplotstableset{set thousands separator={}, precision=3, use comma, col sep=comma, header=true,
+every head row/.style={before row=\hline, after row=\hline},
+every even row/.style={after row=\hline},
+every odd row/.style={after row=\hline},
+every column/.style={column type/.add={|}{}},
+every last column/.style={column type/.add={}{|}},
+columns/text/.style={string type},
+}
 
 \author{}
 \title{Пример на основе класса документа \texttt{bomgost.cls}}
 \date{\today}
 
 
-
 \begin{document}
-
 
 \maketitle
 \thispagestyle{empty}
@@ -68,15 +81,16 @@
 f(x) = x^2 + x-2.
 \end{equation}
 
+\subsubsection{Рисунок}
 График представлен на рисунке ниже.
 % Важно добавлять каждый рисунок в окружение gostfigure, чтобы был правильный подсчёт общего числа рисунков.
 \begin{gostfigure}
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
-\begin{axis}[domain=-3:3, width = 0.8 \textwidth, grid = both, ylabel style={rotate=-90}, xlabel = \(x\), ylabel = \(f(x)\)]
-\addplot[mark=none, thick]{x*x + x - 2};
-\end{axis}
+  \begin{axis}[domain=-3:3, width = 0.8 \textwidth, grid = both, ylabel style={rotate=-90}, xlabel = \(x\), ylabel = \(f(x)\)]
+  \addplot[mark=none, thick]{x*x + x - 2};
+  \end{axis}
 \end{tikzpicture}
 \caption{График \(f(x)\).}
 \end{figure}
@@ -99,6 +113,56 @@ f(x) = x^2 + x-2.
 \end{table}
 \end{gosttable}
 
+\subsection{Таблица из файла}
+
+Пример таблицы из файла, которую просто обновлять.
+
+\pgfplotstableread{data/sample.csv}{\loadedtable}
+
+\begin{gosttable}
+    \begin{table}[H]
+        \centering
+        \caption{Табличные данные}
+        \pgfplotstabletypeset[columns={id,num}]{\loadedtable}
+    \end{table}
+\end{gosttable}
+
+Другие столбцы.
+
+\begin{gosttable}
+  \begin{table}[H]
+      \centering
+      \caption{Табличные данные}
+      \pgfplotstabletypeset[columns={id,text}]{\loadedtable}
+  \end{table}
+\end{gosttable}
+
+\subsubsection{Таблица с разрывом страницы}
+\pgfplotstableread{data/big.csv}{\loadedtable}
+\begin{gosttable}
+  \pgfplotstabletypeset[font=\small
+  ,begin table = \begin{longtable}
+  ,end table = \end{longtable}
+  ,every head row/.append style={before  row={%
+  \caption{Таблица с разрывом}
+  \label{tab:long_table}\\
+  \hline
+  \endfirsthead
+  \caption*{Продолжение таблицы~\cref{tab:long_table}}\\
+  \hline 
+  col 1 & col 2 & col 3\\
+  \hline
+  \endhead
+  }
+  }
+  ,every first row/.append style={before row ={
+    col 1 & col 2 & col 3\\
+  \hline
+  }
+  }
+  , columns={id,num,text}
+  ]{\loadedtable}
+\end{gosttable}
 
 
 \section{ПРАКТИЧЕСКАЯ ЧАСТЬ}
