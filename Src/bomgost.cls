@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{bomgost}[2021/01/03 The version is 0.1.1.3 The XeLaTeX class for the bachelor's or master's thesis.]
+\ProvidesClass{bomgost}[2023/09/27 The version is 0.2.0 The XeLaTeX class for the bachelor's or master's thesis.]
 
 \LoadClass[14pt, oneside]{extarticle}
 
@@ -54,10 +54,10 @@
 
 
 % Установка основного языка и дополнительного.
-\setdefaultlanguage[spelling=modern]{russian}
+\setdefaultlanguage[spelling=modern,indentfirst=true,forceheadingpunctuation=false]{russian}
 \setotherlanguage{english}
 
-% Включение стандартных сокращений для кавычек и разлисных видов тире.
+% Включение стандартных сокращений для кавычек и различных видов тире.
 \defaultfontfeatures{Ligatures=TeX}
 
 % Установка шрифтов.
@@ -67,7 +67,7 @@
 
 % Для избежания ошибки о том, что не определён шрифт для кириллических символов.
 \newfontfamily\cyrillicfont{Times New Roman}[Script=Cyrillic]
-\newfontfamily\cyrillicfonttt{Courier New}% [Script=Cyrillic]
+\newfontfamily\cyrillicfonttt{Courier New}[Script=Cyrillic]
 \newfontfamily\cyrillicfontsf{Arial}[Script=Cyrillic]
 
 %---------------------------------------------------------------------------------------
@@ -82,9 +82,6 @@
 
 % Узнать, сколько всего страниц в документе.
 \RequirePackage[nodvi]{totpages} 
-
-% Первая строка начинается с отступа.
-\RequirePackage{indentfirst}
 
 % Формат страницы.
 \RequirePackage[a4paper, headsep = 0.5 \headsep, left=2.5cm, right=2.1cm, top=2cm, bottom=2.1cm]{geometry}
@@ -147,12 +144,7 @@
 \titlespacing*{\subparagraph}{0pt}{0pt}{*2}
 
 
-% Переопределение номеров section, subsection и т. д.
 % subparagraph используется для оформления приложений, поэтому формат номера отличается от других.
-\renewcommand{\thesection}{\arabic{section}}
-\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
-\renewcommand{\theparagraph}{\thesubsubsection.\arabic{paragraph}}
 \renewcommand{\thesubparagraph}{\appendixnumtitle\ \arabic{totappendix}}
 
 % section, subparagraph начинаались с новой страницы.
